@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ appName }} - {{ appVersion }}{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a id="navbar-brand-icon" class="navbar-brand" href="#">
+                    <img alt="Bieblo server" src="{{ asset ('favicon-32x32.png') }}">
+                </a>
+                <a class="navbar-brand" href="#">{{ appName }} - {{ appVersion }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="jumbotron" class="jumbotron">
+        <div class="container">
+            <h1>{{ appName }} is running!</h1>
+            <p>The current verion is {{ appVersion }} and running on symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</p>
+            <p><a class="btn btn-primary btn-lg" href="{{ linkApiDoc }}" role="button">Open API documentation</a></p>
+            <div style="text-align: center">
+                <p>View the source on GitHub <a href="{{ linkGitHub }}"><i class="fa fa-github" aria-hidden="true"></i></a> </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/font-awesome.css') }}">
+    <style type="text/css">
+        #navbar-brand-icon {
+            padding-top: 8px;
+        }
+        #jumbotron {
+            margin-top: -50px;
+        }
+    </style>
+{% endblock %}

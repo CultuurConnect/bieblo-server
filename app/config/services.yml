@@ -1,0 +1,35 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+    app.cc.language: nl
+    app.cc.root.api.version: v0
+    app.cc.root.domain: zoeken.bibliotheek.be
+    app.regions.entityRepository: "AppBundle:Region"
+    app.libraries.entityRepository: "AppBundle:Library"
+
+services:
+    app.cc.server.root:
+        class: AppBundle\Service\CultuurConnect\Server
+        arguments: ['%app.cc.root.domain%', '%app.cc.root.authorization%', '%app.cc.root.api.version%', '%app.cc.language%']
+    app.cc.fetch.regions:
+        class: AppBundle\Service\CultuurConnect\Fetch\Regions
+        arguments: ['@app.cc.server.root', '@doctrine.orm.entity_manager', '%app.regions.entityRepository%']
+    app.cc.fetch.libraries:
+        class: AppBundle\Service\CultuurConnect\Fetch\Libraries
+        arguments: ['@app.cc.server.root', '@doctrine.orm.entity_manager', '%app.libraries.entityRepository%']
+    app.bieblo.fetch.regions:
+        class: AppBundle\Service\Bieblo\Fetch\Regions
+        arguments: ['@doctrine.orm.entity_manager', '%app.regions.entityRepository%']
+    app.bieblo.fetch.libraries:
+        class: AppBundle\Service\Bieblo\Fetch\Libraries
+        arguments: ['@doctrine.orm.entity_manager', '%app.libraries.entityRepository%']
+    app.bieblo.sync.regions:
+        class: AppBundle\Service\Bieblo\Sync\Regions
+        arguments: ['@doctrine.orm.entity_manager', '@monolog.logger.sync', '@app.cc.fetch.regions']
+    app.bieblo.sync.libraries:
+        class: AppBundle\Service\Bieblo\Sync\Libraries
+        arguments: ['@doctrine.orm.entity_manager', '@monolog.logger.sync', '@app.bieblo.fetch.regions', '@app.cc.fetch.libraries']
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

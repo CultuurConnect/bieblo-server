@@ -1,0 +1,23 @@
+{
+  "name": "bieblo-server",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "~3.3.7",
+    "fontawesome": "~4.7.0"
+  },
+  "homepage": "https://github.com/CultuurConnect/bieblo-server",
+  "authors": [
+    "Jonas Verhaert <jonas.verhaert@gmail.com>"
+  ],
+  "description": "Bieblo server bower file for injecting bootstrap and fontawesome.",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ]
+}
