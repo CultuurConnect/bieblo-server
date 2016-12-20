@@ -137,7 +137,7 @@ class Server {
         $client = new Client();
         try {
             $res = $client->request('GET', $url, array(
-                'query' => $this->getParams()
+                'query' => $this->getParams($params)
             ));
             $result = $onlyBodyResponse ? (string)$res->getBody() : $res;
         } catch (ClientException $e) {

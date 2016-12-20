@@ -19,7 +19,7 @@ use AppBundle\Entity\Region;
  *     defaults={"_format": "json"}
  * )
  */
-class RegionsController extends ApiAbstractController
+class RegionsController extends AbstractApiController
 {
     /**
      * Returns a flatten list of all the regions that are synced into the Bieblo server.

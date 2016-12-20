@@ -16,7 +16,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
  *     defaults={"_format": "json"}
  * )
  */
-class LibrariesController extends ApiAbstractController
+class LibrariesController extends AbstractApiController
 {
 
     /**

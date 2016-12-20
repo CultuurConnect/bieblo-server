@@ -20,3 +20,4 @@ parameters:
 
     # cultuur connect
     app.cc.root.authorization: your_api_key
+    app.cc.gent.authorization: your_api_key

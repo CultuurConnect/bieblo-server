@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  *     defaults={"_format": "json"}
  * )
  */
-class TagController extends ApiAbstractController
+class TagController extends AbstractApiController
 {
 
     /**

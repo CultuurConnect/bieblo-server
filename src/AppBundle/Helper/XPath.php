@@ -43,4 +43,23 @@ class XPath {
         $query = sprintf('%s or %s or %s', $biosStartBib, $biosStartLoc, $biosGeneratedBed);
         return self::holding($query);
     }
+
+    static public function count()
+    {
+        return '//count';
+    }
+
+    static public function page()
+    {
+        return '//page';
+    }
+
+    static public function book()
+    {
+        return '//result';
+    }
+
+    static public function location($id) {
+        return sprintf('//location[@id="%s"]', $id);
+    }
 }

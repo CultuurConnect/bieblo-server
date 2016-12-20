@@ -1,10 +1,11 @@
 <?php
-namespace AppBundle\Service\Bieblo\Fetch;
+
+namespace AppBundle\Service\Bieblo;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
-abstract class AbstractFetch
+abstract class AbstractBiebloService
 {
     /**
      * @var EntityManager
@@ -65,23 +66,6 @@ abstract class AbstractFetch
     public function setEntityRepositoryByName($repositoryName)
     {
         $this->setEntityRepository($this->getEntityManager()->getRepository($repositoryName));
-    }
-
-    /**
-     * @return array
-     */
-    public function findAll()
-    {
-        return $this->getEntityRepository()->findAll();
-    }
-
-    /**
-     * @param $id
-     * @return null|object
-     */
-    public function findById($id)
-    {
-        return $this->getEntityRepository()->find($id);
     }
 
 }

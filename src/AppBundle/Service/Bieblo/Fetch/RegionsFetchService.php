@@ -4,7 +4,7 @@ namespace AppBundle\Service\Bieblo\Fetch;
 
 use AppBundle\Entity\Region;
 
-class Regions extends AbstractFetch
+class RegionsFetchService extends AbstractBiebloFetchService
 {
 
     public function findAllRoot()

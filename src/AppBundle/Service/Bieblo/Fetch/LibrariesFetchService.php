@@ -4,7 +4,7 @@ namespace AppBundle\Service\Bieblo\Fetch;
 
 use AppBundle\Entity\Region;
 
-class Libraries extends AbstractFetch
+class LibrariesFetchService extends AbstractBiebloFetchService
 {
     public function findAllForRegion(Region $region)
     {
