@@ -88,6 +88,9 @@ class BooksController extends AbstractApiController
         $books = [];
         foreach ($keywords as $keyword) {
             $books = array_merge($books, $service->fetchRandomBooks($keyword, $ageGroup));
+            if (count($books)>50) {
+                break;
+            }
         }
 
         shuffle($books);
