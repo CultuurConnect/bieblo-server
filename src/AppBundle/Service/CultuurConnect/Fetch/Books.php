@@ -85,6 +85,12 @@ class Books extends AbstractFetch
             $books = array_merge($books, $secondRequest['books']);
         }
 
+        // Temp cover filter on books
+        $books = array_filter($books, function($book) {
+            /** @var Book $book */
+            return strlen($book->getCover());
+        });
+
         return $books;
     }
 
