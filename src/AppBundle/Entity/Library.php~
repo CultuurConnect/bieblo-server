@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Library\Address;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Library
@@ -11,19 +12,24 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="library")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LibraryRepository")
  */
-class Library
+class Library implements \JsonSerializable
 {
     /**
-     * @var int
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
+    /**
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="string", length=191, unique=true)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
 
-        /**
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -33,28 +39,28 @@ class Library
     /**
      * @var string
      *
-     * @ORM\Column(name="latitude", type="decimal", precision=10, scale=8, nullable=true)
+     * @ORM\Column(name="latitude", type="string", length=11, nullable=true)
      */
     private $latitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="longitude", type="decimal", precision=11, scale=8, nullable=true)
+     * @ORM\Column(name="longitude", type="string", length=10, nullable=true)
      */
     private $longitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="impala", type="string", length=60, nullable=true, unique=true)
+     * @ORM\Column(name="impala", type="string", length=60, nullable=true, unique=false)
      */
     private $impala;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bios", type="string", length=60, nullable=true, unique=true)
+     * @ORM\Column(name="bios", type="string", length=60, nullable=true, unique=false)
      */
     private $bios;
 
@@ -73,9 +79,23 @@ class Library
     private $address;
 
     /**
+     * Set id
+     *
+     * @param string $id
+     *
+     * @return Library
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -115,7 +135,7 @@ class Library
      */
     public function setLatitude($latitude)
     {
-        $this->latitude = $latitude;
+        $this->latitude = strlen($latitude) ? number_format(floatval($latitude), 6) : null;
 
         return $this;
     }
@@ -139,7 +159,7 @@ class Library
      */
     public function setLongitude($longitude)
     {
-        $this->longitude = $longitude;
+        $this->longitude = strlen($longitude) ? number_format(floatval($longitude), 6) : null;
 
         return $this;
     }
@@ -248,5 +268,30 @@ class Library
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'latitude' => $this->getLatitude(),
+            'longitude' => $this->getLongitude(),
+            'bios' => $this->getBios(),
+            'impala' => $this->getImpala(),
+            'region' => $this->getRegion() instanceof Region
+                ? $this->getRegion()->getId()
+                : null,
+            'address' => $this->getAddress() instanceof Address
+                ? $this->getAddress()->jsonSerialize()
+                : null
+        ];
     }
 }

@@ -11,6 +11,8 @@ parameters:
     app.libraries.entityRepository: "AppBundle:Library"
     app.books.entityRepository: "AppBundle:Book"
     app.keywords.entityRepository: "AppBundle:Keyword"
+    app.ageGroups.entityRepository: "AppBundle:AgeGroup"
+    app.tags.entityRepository: "AppBundle:Tag"
 
 services:
     app.cc.server.root:
@@ -40,9 +42,15 @@ services:
     app.bieblo.fetch.keywords:
         class: AppBundle\Service\Bieblo\Fetch\KeywordsFetchService
         arguments: ['@doctrine.orm.entity_manager', '%app.keywords.entityRepository%']
+    app.bieblo.fetch.ageGroups:
+        class: AppBundle\Service\Bieblo\Fetch\AgeGroupsFetchService
+        arguments: ['@doctrine.orm.entity_manager', '%app.ageGroups.entityRepository%']
+    app.bieblo.fetch.tags:
+        class: AppBundle\Service\Bieblo\Fetch\TagsFetchService
+        arguments: ['@doctrine.orm.entity_manager', '%app.tags.entityRepository%']
     app.bieblo.entity.keyword:
         class: AppBundle\Service\Bieblo\Entity\KeywordEntityService
-        arguments: ['@doctrine.orm.entity_manager', '%app.keywords.entityRepository%']
+        arguments: ['@doctrine.orm.entity_manager', '%app.ageGroups.entityRepository%']
     app.bieblo.sync.regions:
         class: AppBundle\Service\Bieblo\Sync\Regions
         arguments: ['@doctrine.orm.entity_manager', '@monolog.logger.sync', '@app.cc.fetch.regions']

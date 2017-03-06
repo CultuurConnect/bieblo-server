@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+
+$kernel = new AppKernel('dev', true);
+$application = new Application($kernel);
+
+$application->addCommands([
+    new \AppBundle\Command\SyncExecuteCommand(),
+    new \AppBundle\Command\SyncRunCommand(),
+]);
+
+$application->run();

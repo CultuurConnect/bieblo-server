@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Library;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Address
@@ -10,8 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="library_address")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Library\AddressRepository")
  */
-class Address
+class Address implements \JsonSerializable
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
     /**
      * @var int
      *
@@ -59,14 +66,14 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=90)
+     * @ORM\Column(name="email", type="string", length=90, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="postcode", type="string", length=25)
+     * @ORM\Column(name="postcode", type="string", length=25, nullable=true)
      */
     private $postcode;
 
@@ -307,5 +314,26 @@ class Address
     public function getLibrary()
     {
         return $this->library;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return [
+            'street' => $this->getStreet(),
+            'number' => $this->getNumber(),
+            'city' => $this->getCity(),
+            'community' => $this->getCommunity(),
+            'phone' => $this->getPhone(),
+            'email' => $this->getEmail(),
+            'postcode' => $this->getPostcode(),
+            'url' => $this->getUrl(),
+        ];
     }
 }
