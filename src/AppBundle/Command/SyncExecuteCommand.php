@@ -3,7 +3,6 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\AgeGroup;
 use AppBundle\Entity\BookTag;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -37,6 +37,21 @@ class BookTag
     private $ageGroup;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $available;
+
+    /**
+     * @ORM\Column(name="subloc", type="string", length=255, nullable=true)
+     */
+    private $subloc;
+
+    /**
+     * @ORM\Column(name="shelfmark", type="string", length=255, nullable=true)
+     */
+    private $shelfmark;
+
+    /**
      * Set book
      *
      * @param \AppBundle\Entity\Book $book
@@ -106,5 +121,77 @@ class BookTag
     public function getAgeGroup()
     {
         return $this->ageGroup;
+    }
+
+    /**
+     * Set available
+     *
+     * @param $available
+     *
+     * @return BookTag
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return \bool
+     */
+    public function getAvailable()
+    {
+        return $this->available;
+    }
+
+    /**
+     * Set subloc
+     *
+     * @param string $subloc
+     *
+     * @return BookTag
+     */
+    public function setSubloc($subloc)
+    {
+        $this->subloc = $subloc;
+
+        return $this;
+    }
+
+    /**
+     * Get subloc
+     *
+     * @return string
+     */
+    public function getSubloc()
+    {
+        return $this->subloc;
+    }
+
+    /**
+     * Set shelfmark
+     *
+     * @param string $shelfmark
+     *
+     * @return BookTag
+     */
+    public function setShelfmark($shelfmark)
+    {
+        $this->shelfmark = $shelfmark;
+
+        return $this;
+    }
+
+    /**
+     * Get shelfmark
+     *
+     * @return string
+     */
+    public function getShelfmark()
+    {
+        return $this->shelfmark;
     }
 }

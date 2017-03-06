@@ -62,17 +62,17 @@ class Book implements \JsonSerializable
     private $summary;
 
     /**
-     * @var boolean
+     * @ORM\Column(type="boolean")
      */
     private $available;
 
     /**
-     * @var string
+     * @ORM\Column(name="subloc", type="string", length=255, nullable=true)
      */
     private $subloc;
 
     /**
-     * @var string
+     * @ORM\Column(name="shelfmark", type="string", length=255, nullable=true)
      */
     private $shelfmark;
 
@@ -321,5 +321,15 @@ class Book implements \JsonSerializable
     public function getExternalId()
     {
         return $this->externalId;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean
+     */
+    public function getAvailable()
+    {
+        return $this->available;
     }
 }

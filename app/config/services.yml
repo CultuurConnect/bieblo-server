@@ -52,6 +52,9 @@ services:
     app.bieblo.fetch.bookTags:
         class: AppBundle\Service\Bieblo\Fetch\BookTagsFetchService
         arguments: ['@doctrine.orm.entity_manager', '%app.bookTags.entityRepository%']
+    app.bieblo.fetch.books:
+        class: AppBundle\Service\Bieblo\Fetch\BooksFetchService
+        arguments: ['@doctrine.orm.entity_manager', '%app.books.entityRepository%']
     app.bieblo.entity.keyword:
         class: AppBundle\Service\Bieblo\Entity\KeywordEntityService
         arguments: ['@doctrine.orm.entity_manager', '%app.ageGroups.entityRepository%']

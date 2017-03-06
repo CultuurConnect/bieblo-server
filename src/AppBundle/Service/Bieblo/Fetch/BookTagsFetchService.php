@@ -4,6 +4,7 @@ namespace AppBundle\Service\Bieblo\Fetch;
 
 use AppBundle\Entity\AgeGroup;
 use AppBundle\Entity\Book;
+use AppBundle\Entity\BookTag;
 use AppBundle\Entity\Tag;
 
 class BookTagsFetchService extends AbstractBiebloFetchService
@@ -21,6 +22,37 @@ class BookTagsFetchService extends AbstractBiebloFetchService
             'tag' => $tag->getId(),
             'ageGroup' => $ageGroup->getId(),
         ));
+    }
+
+    /**
+     * @param Tag $tag
+     * @param AgeGroup $ageGroup
+     * @return array
+     */
+    public function fetchBooksByTagAndAgeGroup($tag, $ageGroup) {
+        return $this->getEntityRepository()->findBy(array(
+            'tag' => $tag->getId(),
+            'ageGroup' => $ageGroup->getId(),
+        ));
+    }
+
+    /**
+     * @param Book $book
+     */
+    public function updateAvailability($book) {
+
+        $bookTags = $this->getEntityRepository()->findBy(array(
+            'book' => $book->getId()
+        ));
+
+        /** @var BookTag $bookTag */
+        foreach ($bookTags as $bookTag) {
+            $bookTag->setAvailable($book->isAvailable() ? true : false);
+            $bookTag->setSubloc($book->getSubloc());
+            $bookTag->setShelfmark($book->getShelfmark());
+            $this->getEntityManager()->merge($bookTag);
+            $this->getEntityManager()->flush();
+        }
     }
 }
 
