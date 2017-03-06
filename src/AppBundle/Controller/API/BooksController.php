@@ -51,9 +51,11 @@ class BooksController extends AbstractApiController
             while (count($books) && count($availableBooks) <= 8) {
                 $bookTag = array_pop($books);
                 $book = $this->getServiceBiebloFetchBooks()->findById($bookTag['book_id']);
-                $book = $this->getServiceCultuurConnectFetchAvailability()->fetchAvailability($book);
-                if ($book->isAvailable()) {
-                    $availableBooks[] = $book;
+                if ($book->getCover()) {
+                    // $book = $this->getServiceCultuurConnectFetchAvailability()->fetchAvailability($book);
+                    if ($book->isAvailable()) {
+                        $availableBooks[] = $book;
+                    }
                 }
             }
         } catch (\Exception $e) {
