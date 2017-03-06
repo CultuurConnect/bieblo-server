@@ -102,7 +102,7 @@ class Books extends AbstractFetch
 
         $idElement = $element->getElementsByTagName('id')->item(0);
         $id = $idElement ? $idElement->nodeValue : null;
-        
+
         $entity = $this->getEntityRepository()->findOneBy(array('externalId' => $id));
 
         if (!$entity) {
