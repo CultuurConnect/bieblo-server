@@ -61,7 +61,7 @@ class BookTagsFetchService extends AbstractBiebloFetchService
         $qb->andWhere('bt.available = :available');
         $qb->setParameter('tags', $likes);
         $qb->setParameter('ageGroup', $ageGroup);
-        $qb->setParameter('available', true);
+        $qb->setParameter('available', 1);
         return $qb->getQuery()->getArrayResult();
     }
 }
