@@ -3,6 +3,7 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\AgeGroup;
 use AppBundle\Entity\BookTag;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -51,25 +52,32 @@ class SyncExecuteCommand extends ContainerAwareCommand
                 'created' => [],
             ];
 
-            /** @var Book $book */
-            foreach ($books as $book) {
-                $result['count']++;
-                $book->setAgeGroup($ageGroup);
-                $uow->computeChangeSets();
-                $changes = $uow->getEntityChangeSet($book);
-                if (!$book->getCreatedAt() instanceof \DateTime) {
-                    $result['created'][] = $book->getId();
-                } else if (count($changes)) {
-                    $result['updated'][] = $book->getId();
+
+                /** @var Book $book */
+                foreach ($books as $book) {
+                    $service->getEntityManager()->persist($book);
+                    $result['count']++;
+                    $book->setAgeGroup($ageGroup);
+                    $uow->computeChangeSets();
+                    $changes = $uow->getEntityChangeSet($book);
+                    if ($book->getId() === null) {
+                        $service->getEntityManager()->flush($book);
+                        $result['created'][] = $book->getId();
+                    } else if (count($changes)) {
+                        $service->getEntityManager()->flush($book);
+                        $result['updated'][] = $book->getId();
+                    }
+
+                    if (!$this->getContainer()->get('app.bieblo.fetch.bookTags')->fetchBookTag($book, $tag, $ageGroup)) {
+                        $bookTag = new BookTag();
+                        $bookTag->setAgeGroup($ageGroup);
+                        $bookTag->setBook($book);
+                        $bookTag->setTag($tag);
+
+                        $service->getEntityManager()->persist($bookTag);
+                    }
                 }
 
-                $bookTag = new BookTag();
-                $bookTag->setAgeGroup($ageGroup);
-                $bookTag->setBook($book);
-                $bookTag->setTag($tag);
-
-                $service->getEntityManager()->persist($bookTag);
-            }
 
             $output->writeln('- found ' . count($books) . ' books');
             $output->writeln('- updated ' . count($result['updated']) . ' books');

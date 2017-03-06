@@ -20,12 +20,18 @@ class Book implements \JsonSerializable
     use TimestampableEntity;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="id", type="string", length=150, unique=true)
+     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="external_id", type="string", length=150, unique=true)
+     */
+    private $externalId;
 
     /**
      * @var string
@@ -44,14 +50,14 @@ class Book implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="cover", type="string", length=255)
+     * @ORM\Column(name="cover", type="string", length=255, nullable=true)
      */
     private $cover;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="summary", type="text")
+     * @ORM\Column(name="summary", type="text", nullable=true)
      */
     private $summary;
 
@@ -102,20 +108,6 @@ class Book implements \JsonSerializable
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get id
-     *
-     * @param string $id
-     *
-     * @return Book
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -281,5 +273,53 @@ class Book implements \JsonSerializable
             'subloc' => $this->getSubloc(),
             'shelfmark' => $this->getShelfmark(),
         ];
+    }
+
+    /**
+     * Set iban
+     *
+     * @param string $iban
+     *
+     * @return Book
+     */
+    public function setIban($iban)
+    {
+        $this->iban = $iban;
+
+        return $this;
+    }
+
+    /**
+     * Get iban
+     *
+     * @return string
+     */
+    public function getIban()
+    {
+        return $this->iban;
+    }
+
+    /**
+     * Set externalId
+     *
+     * @param string $externalId
+     *
+     * @return Book
+     */
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    /**
+     * Get externalId
+     *
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
     }
 }

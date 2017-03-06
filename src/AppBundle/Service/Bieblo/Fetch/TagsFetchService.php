@@ -2,6 +2,8 @@
 
 namespace AppBundle\Service\Bieblo\Fetch;
 
+use AppBundle\Entity\AgeGroup;
+use AppBundle\Entity\Book;
 use AppBundle\Entity\Tag;
 
 class TagsFetchService extends AbstractBiebloFetchService

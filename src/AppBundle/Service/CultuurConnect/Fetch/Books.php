@@ -102,13 +102,12 @@ class Books extends AbstractFetch
 
         $idElement = $element->getElementsByTagName('id')->item(0);
         $id = $idElement ? $idElement->nodeValue : null;
-
-        $entity = $this->getEntityRepository()->find($id);
+        
+        $entity = $this->getEntityRepository()->findOneBy(array('externalId' => $id));
 
         if (!$entity) {
             $entity = new Book();
-            $entity->setId($id);
-            $this->getEntityManager()->persist($entity);
+            $entity->setExternalId($id);
         }
 
         $titleElement = $element->getElementsByTagName('short-title')->item(0);
@@ -118,10 +117,10 @@ class Books extends AbstractFetch
         $cover = $coverElement ? $coverElement->getElementsByTagName('url')->item(0)->nodeValue : '';
 
         $authorElement = $element->getElementsByTagName('main-author')->item(0);
-        $author = $authorElement ? $authorElement->nodeValue : '';
+        $author = $authorElement ? $authorElement->nodeValue : null;
 
         $summaryElement = $element->getElementsByTagName('summary')->item(0);
-        $summary = $summaryElement ? $summaryElement->nodeValue : '';
+        $summary = $summaryElement ? $summaryElement->nodeValue : null;
 
         $entity->setTitle($title);
         $entity->setAuthor($author);

@@ -1,0 +1,10 @@
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Humor', '', '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Fantasieverhalen', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Detectives', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Sportverhalen', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Dieren', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Andere culturen', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Liefdesverhalen', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Historische verhalen', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Prijsboeken', null, '{}');
+INSERT INTO bieblo.tag (name, description, settings) VALUES ('Vriendschap', null, '{}');

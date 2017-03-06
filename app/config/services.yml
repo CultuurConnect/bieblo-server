@@ -13,6 +13,7 @@ parameters:
     app.keywords.entityRepository: "AppBundle:Keyword"
     app.ageGroups.entityRepository: "AppBundle:AgeGroup"
     app.tags.entityRepository: "AppBundle:Tag"
+    app.bookTags.entityRepository: "AppBundle:BookTag"
 
 services:
     app.cc.server.root:
@@ -48,6 +49,9 @@ services:
     app.bieblo.fetch.tags:
         class: AppBundle\Service\Bieblo\Fetch\TagsFetchService
         arguments: ['@doctrine.orm.entity_manager', '%app.tags.entityRepository%']
+    app.bieblo.fetch.bookTags:
+        class: AppBundle\Service\Bieblo\Fetch\BookTagsFetchService
+        arguments: ['@doctrine.orm.entity_manager', '%app.bookTags.entityRepository%']
     app.bieblo.entity.keyword:
         class: AppBundle\Service\Bieblo\Entity\KeywordEntityService
         arguments: ['@doctrine.orm.entity_manager', '%app.ageGroups.entityRepository%']
