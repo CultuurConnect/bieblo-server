@@ -42,6 +42,34 @@ abstract class AbstractApiController extends Controller
     }
 
     /**
+     * @return \AppBundle\Service\Bieblo\Fetch\BookTagsFetchService|object
+     */
+    protected function getServiceBiebloFetchBookTags() {
+        return $this->get('app.bieblo.fetch.bookTags');
+    }
+
+    /**
+     * @return \AppBundle\Service\Bieblo\Fetch\BooksFetchService|object
+     */
+    protected function getServiceBiebloFetchBooks() {
+        return $this->get('app.bieblo.fetch.books');
+    }
+
+    /**
+     * @return \AppBundle\Service\Bieblo\Fetch\TagsFetchService|object
+     */
+    protected function getServiceBiebloFetchTags() {
+        return $this->get('app.bieblo.fetch.tags');
+    }
+
+    /**
+     * @return \AppBundle\Service\Bieblo\Fetch\AgeGroupsFetchService|object
+     */
+    protected function getServiceBiebloFetchAgeGroups() {
+        return $this->get('app.bieblo.fetch.ageGroups');
+    }
+
+    /**
      * @return KeywordEntityService|object
      */
     protected function getKeywordEntityService() {

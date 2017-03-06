@@ -13,7 +13,7 @@ class Availability extends AbstractFetch
 
     public function fetchAvailability(Book $book) {
 
-        $id = $book->getId();
+        $id = $book->getExternalId();
 
         $xmlDocument = self::getXMLDocument('availability',array(
             'id' => $id
@@ -46,4 +46,3 @@ class Availability extends AbstractFetch
         return $book;
     }
 }
-//http://zoeken.gent.bibliotheek.be/api/v0//?id=|library/marc/vlacc|2848773&authorization=26f9ce7cdcbe09df6f0b37d79b6c4dc2&lang=nl

@@ -54,5 +54,13 @@ class BookTagsFetchService extends AbstractBiebloFetchService
             $this->getEntityManager()->flush();
         }
     }
+
+    public function getRandomBooks($likes, $ageGroup) {
+        $qb = $this->getEntityRepository()->createQueryBuilder('bt')->where('bt.tag IN (:tags)');
+        $qb->andWhere('bt.ageGroup = :ageGroup');
+        $qb->setParameter('tags', $likes);
+        $qb->setParameter('ageGroup', $ageGroup);
+        return $qb->getQuery()->getArrayResult();
+    }
 }
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Service\CultuurConnect;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class Server
