@@ -72,7 +72,7 @@ class SyncExecuteCommand extends ContainerAwareCommand
                         $bookTag->setAgeGroup($ageGroup);
                         $bookTag->setBook($book);
                         $bookTag->setTag($tag);
-
+                        $bookTag->setAvailable(false);
                         $service->getEntityManager()->persist($bookTag);
                     }
                 }
