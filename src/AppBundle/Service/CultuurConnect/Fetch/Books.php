@@ -129,6 +129,7 @@ class Books extends AbstractFetch
         $entity->setAuthor($author);
         $entity->setCover($cover);
         $entity->setSummary($summary);
+        $entity->setAvailable(false);
 
         return $entity;
     }
