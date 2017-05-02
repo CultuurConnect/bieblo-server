@@ -28,8 +28,6 @@ class Books extends AbstractFetch
 
         $q = sprintf('%s %s %s', $keyword, $notArchive, $doelGroep);
 
-        $q .= 'x';
-
         $xmlDocument = self::getXMLDocument('search',array(
             'q' => $q,
             'page' => $page
