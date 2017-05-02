@@ -24,7 +24,11 @@ class Books extends AbstractFetch
                 $doelGroep = '';
         }
 
-        $q = sprintf('%s %s', $keyword, $doelGroep);
+        $notArchive = 'AND NOT pbs-subloc:%22gent/hoofdbibliotheek|JM*%22';
+
+        $q = sprintf('%s %s %s', $keyword, $notArchive, $doelGroep);
+
+        $q .= 'x';
 
         $xmlDocument = self::getXMLDocument('search',array(
             'q' => $q,
@@ -108,6 +112,7 @@ class Books extends AbstractFetch
         if (!$entity) {
             $entity = new Book();
             $entity->setExternalId($id);
+            $entity->setAvailable(false);
         }
 
         $titleElement = $element->getElementsByTagName('short-title')->item(0);
