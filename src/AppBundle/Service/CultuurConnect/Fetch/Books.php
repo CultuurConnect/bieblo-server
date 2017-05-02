@@ -24,7 +24,7 @@ class Books extends AbstractFetch
                 $doelGroep = '';
         }
 
-        $notArchive = 'AND (NOT pbs-subloc:%22gent/hoofdbibliotheek|JM*%22)';
+        $notArchive = 'NOT pbs-subloc:"gent/hoofdbibliotheek|JM*"';
 
         $q = sprintf('%s %s %s', $keyword, $notArchive, $doelGroep);
 
