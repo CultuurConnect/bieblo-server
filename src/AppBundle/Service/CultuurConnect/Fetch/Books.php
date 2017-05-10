@@ -25,8 +25,9 @@ class Books extends AbstractFetch
         }
 
         $notArchive = 'NOT pbs-subloc:"gent/hoofdbibliotheek|JM*"';
+        $nlLanguage = 'AND language:nederlands';
 
-        $q = sprintf('%s %s %s', $keyword, $notArchive, $doelGroep);
+        $q = sprintf('%s %s %s %s', $keyword, $nlLanguage, $notArchive, $doelGroep);
 
         $xmlDocument = self::getXMLDocument('search',array(
             'q' => $q,
