@@ -1,10 +1,11 @@
 # Bieblo Server
 
-API server for fetching data from cultuurconnect, storing it and providing it to the bieblo client. 
+API server for fetching data from Cultuurconnect, storing it and providing it to the Bieblo client. 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and 
+testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
@@ -13,16 +14,17 @@ PHP >=5.5.9 with MySQL integration should be installed.
 
 ### Installing
 
-Install composer
+Install composer and bower
 
 ```bash
 # Install Composer
-curl -sS https://getcomposer.org/installer | php
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+npm install -g bower
 ```
 
 Install project dependencies using Composer
 ```bash
-php composer.phar install
+composer install
 ```
 
 Add database config & root api token
@@ -54,7 +56,7 @@ php bin/console server:run
 
 ## Deployment
 
-Setup server with nginx configuration, for more information visit [Symfony documentation server configuration](http://symfony.com/doc/current/setup/web_server_configuration.html)
+Setup server with NGINX configuration, for more information visit [Symfony documentation server configuration](http://symfony.com/doc/current/setup/web_server_configuration.html)
 
 ```
 server {
