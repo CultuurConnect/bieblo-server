@@ -1,24 +1,23 @@
 <?php
+
 namespace AppBundle\Command;
 
 use AppBundle\Entity\Book;
-use AppBundle\Entity\Tag;
 use AppBundle\Service\Bieblo\Fetch\BooksFetchService;
 use AppBundle\Service\Bieblo\Fetch\BookTagsFetchService;
-use AppBundle\StaticData\Queries;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 class SyncAvailabilityCommand extends ContainerAwareCommand
 {
 
     protected function configure()
     {
-        $this->setName('sync:availablity')
-            ->setDescription('Start sync availablity process')
-            ->setHelp('This command will start the sync availablity process');
+        $this->setName('sync:availability')
+            ->setDescription('Start sync availability process')
+            ->setHelp('This command will start the sync availability process');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -35,7 +34,7 @@ class SyncAvailabilityCommand extends ContainerAwareCommand
         $numBooksBatch = 10;
         $numBatches = ceil($numBooks / $numBooksBatch);
 
-        for ($batch = 0; $batch <= $numBatches; $batch++ ) {
+        for ($batch = 0; $batch <= $numBatches; $batch++) {
             $output->writeln('Update books in batch ' . $batch . ' of ' . $numBatches);
             $books = $serviceBooks->fetchBatch($numBooksBatch, $batch);
             /** @var Book $book */
