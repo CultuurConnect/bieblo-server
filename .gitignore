@@ -1,12 +1,10 @@
 /app/config/parameters.yml
 /build/
 /phpunit.xml
+/var/*
 !/var/cache
-/var/cache/dev/*
+/var/cache/*
 !var/cache/.gitkeep
-!var/cache/dev/.gitkeep
-/var/cache/prod/*
-!var/cache/prod/.gitkeep
 !/var/logs
 /var/logs/*
 !var/logs/.gitkeep
