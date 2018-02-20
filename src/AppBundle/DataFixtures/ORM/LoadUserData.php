@@ -1,13 +1,14 @@
 <?php
+
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\AgeGroup;
 use AppBundle\Entity\Tag;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
@@ -49,14 +50,14 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         }
 
         $tags = array(
-            array('name' => 'Humor'),
+            array('name' => 'Grappige verhalen'),
             array('name' => 'Fantasieverhalen'),
-            array('name' => 'Detectives'),
+            array('name' => 'Spannende verhalen'),
             array('name' => 'Sportverhalen'),
             array('name' => 'Dieren'),
-            array('name' => 'Andere culturen'),
+            array('name' => 'Andere landen'),
             array('name' => 'Liefdesverhalen'),
-            array('name' => 'Historische verhalen'),
+            array('name' => 'Geschiedenis'),
             array('name' => 'Prijsboeken'),
             array('name' => 'Vriendschap'),
         );
