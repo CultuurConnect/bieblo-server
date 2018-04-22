@@ -19,7 +19,7 @@ class Availability extends AbstractFetch
             'id' => $id
         ));
 
-        $hoofdBilbliotheek = self::filterDOMElements($xmlDocument, XPath::location('/root/bibnet/Oost-Vlaanderen/Gent/Hoofdbibliotheek'));
+        $hoofdBilbliotheek = self::filterDOMElements($xmlDocument, XPath::location('/root/bibnet/Oost-Vlaanderen/Ninove/Hoofdbibliotheek'));
 
         if (count($hoofdBilbliotheek)) {
             $hoofdBilbliotheek = $hoofdBilbliotheek[0];

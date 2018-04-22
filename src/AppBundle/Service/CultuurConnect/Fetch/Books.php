@@ -24,7 +24,7 @@ class Books extends AbstractFetch
                 $doelGroep = '';
         }
 
-        $notArchive = 'NOT pbs-subloc:"gent/hoofdbibliotheek|JM*"';
+        $notArchive = 'NOT pbs-subloc:"zedelgem/hoofdbibliotheek|JM*"';
         $nlLanguage = 'AND language:nederlands';
 
         $q = sprintf('%s %s %s %s', $keyword, $nlLanguage, $notArchive, $doelGroep);

@@ -6,7 +6,7 @@ parameters:
     app.cc.root.api.version: v0
     app.cc.gent.api.version: v0
     app.cc.root.domain: zoeken.bibliotheek.be
-    app.cc.gent.domain: zoeken.gent.bibliotheek.be
+    app.cc.gent.domain: zoeken.zedelgem.bibliotheek.be
     app.regions.entityRepository: "AppBundle:Region"
     app.libraries.entityRepository: "AppBundle:Library"
     app.books.entityRepository: "AppBundle:Book"
